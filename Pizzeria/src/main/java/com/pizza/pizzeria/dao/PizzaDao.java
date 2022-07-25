@@ -34,6 +34,26 @@ public class PizzaDao {
 			entityManager.getTransaction().commit();
 		    entityManager.close();
 	}
+	
+	public static void addImpasto(String name) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		Impasto impasto = new Impasto();
+		impasto.setName(name);
+		entityManager.persist(impasto);
+		entityManager.getTransaction().commit();
+	    entityManager.close();
+	}
+	
+	public static void addIngrediente(String name) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		Ingrediente ingrediente = new Ingrediente();
+		ingrediente.setName(name);
+		entityManager.persist(ingrediente);
+		entityManager.getTransaction().commit();
+	    entityManager.close();
+	}
 
 	public static List<Impasto> findAllImpasti() {
 		List<Impasto> listaImpasti = new ArrayList<>();
