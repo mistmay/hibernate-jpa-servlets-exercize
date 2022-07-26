@@ -3,7 +3,6 @@ package com.pizza.pizzeria.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,7 +34,7 @@ public class Pizza {
 	@JoinColumn(name="impasto_id", nullable=false)
 	private Impasto impasto;
 	
-	@ManyToMany(targetEntity = Ingrediente.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Ingrediente.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "Pizza_Ingrediente", 
 				joinColumns = { @JoinColumn(name = "id_pizza") }, 
 				inverseJoinColumns = { @JoinColumn(name = "id_ingrediente") })

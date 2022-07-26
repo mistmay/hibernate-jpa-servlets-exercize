@@ -35,6 +35,15 @@ public class PizzaDao {
 		    entityManager.close();
 	}
 	
+	public static void removePizza(int id) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		Pizza pizza = entityManager.find(Pizza.class, id);
+		entityManager.remove(pizza);
+		entityManager.getTransaction().commit();
+	    entityManager.close();
+	}
+	
 	public static void addImpasto(String name) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		entityManager.getTransaction().begin();

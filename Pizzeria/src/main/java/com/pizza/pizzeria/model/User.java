@@ -3,7 +3,6 @@ package com.pizza.pizzeria.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,7 +26,7 @@ public class User {
 	@Column (name="password")
 	private String password;
 	
-	@OneToMany(mappedBy="user", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	private List<Pizza> pizze = new ArrayList<>();
 
 	public int getUser_id() {

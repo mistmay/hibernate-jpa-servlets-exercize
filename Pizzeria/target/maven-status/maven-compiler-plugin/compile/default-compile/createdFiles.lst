@@ -1,0 +1,11 @@
+com\pizza\pizzeria\model\Ingrediente.class
+com\pizza\pizzeria\controller\LoginServlet.class
+com\pizza\pizzeria\util\JPAUtil.class
+com\pizza\pizzeria\controller\LogoutServlet.class
+com\pizza\pizzeria\model\Pizza.class
+com\pizza\pizzeria\controller\AddIngredients.class
+com\pizza\pizzeria\controller\MakePizza.class
+com\pizza\pizzeria\dao\PizzaDao.class
+com\pizza\pizzeria\model\Impasto.class
+com\pizza\pizzeria\model\User.class
+com\pizza\pizzeria\dao\UserDao.class
