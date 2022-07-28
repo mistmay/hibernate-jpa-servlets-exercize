@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="com.pizza.pizzeria.model.*, com.pizza.pizzeria.dao.PizzaDao, java.util.*"%>
+	import="com.pizza.pizzeria.model.*, java.util.*"%>
 <%
 if (request.getAttribute("logged") == null) {
 	response.sendRedirect("login.jsp");

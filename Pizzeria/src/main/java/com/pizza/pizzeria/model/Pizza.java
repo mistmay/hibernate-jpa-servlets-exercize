@@ -26,11 +26,11 @@ public class Pizza {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id", nullable=false)
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="impasto_id", nullable=false)
 	private Impasto impasto;
 	

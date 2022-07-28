@@ -31,8 +31,27 @@ public class PizzaDao {
 
 			pizza.setIngredienti(currentIngredienti);
 			entityManager.persist(pizza);
+			entityManager.flush();
 			entityManager.getTransaction().commit();
 		    entityManager.close();
+	}
+	
+	public static void updatePizza(String name, String impasto, String[] ingredienti, int userId, int idPizza) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		Impasto currentImpasto = entityManager.find(Impasto.class, Integer.parseInt(impasto));
+		User user = entityManager.find(User.class, userId);
+		List<Ingrediente> currentIngredienti = new ArrayList<>();
+		for (String current : ingredienti) {
+			currentIngredienti.add(entityManager.find(Ingrediente.class, Integer.parseInt(current)));
+		}
+		Pizza pizza = entityManager.find(Pizza.class, idPizza);
+		pizza.setImpasto(currentImpasto);
+		pizza.setIngredienti(currentIngredienti);
+		pizza.setName(name);
+		pizza.setUser(user);
+		entityManager.getTransaction().commit();
+	    entityManager.close();
 	}
 	
 	public static void removePizza(int id) {
@@ -84,5 +103,15 @@ public class PizzaDao {
 		entityManager.getTransaction().commit();
 	    entityManager.close();
 		return listaIngredienti;
+	}
+	
+	public static Pizza findPizzaById(int id) {
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+		entityManager.getTransaction().begin();
+		Pizza pizzaTrovato = entityManager.find(Pizza.class, id);
+		entityManager.refresh(pizzaTrovato);
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		return pizzaTrovato;
 	}
 }

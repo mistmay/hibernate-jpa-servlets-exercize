@@ -17,7 +17,7 @@ public class Ingrediente {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_ingrediente")
-	private long id_ingrediente;
+	private int id_ingrediente;
 	
 	@Column(name="name")
 	private String name;
@@ -25,11 +25,11 @@ public class Ingrediente {
 	@ManyToMany(mappedBy="ingredienti")
 	private List<Pizza> pizze = new ArrayList<>();
 
-	public long getId_ingrediente() {
+	public int getId_ingrediente() {
 		return id_ingrediente;
 	}
 
-	public void setId_ingrediente(long id_ingrediente) {
+	public void setId_ingrediente(int id_ingrediente) {
 		this.id_ingrediente = id_ingrediente;
 	}
 

@@ -15,7 +15,7 @@ if (currentUser.getPizze().size() > 0) {
 			<th scope="col">Nome</th>
 			<th scope="col">Impasto</th>
 			<th scope="col">Ingredienti</th>
-			<th scope="col">Rimuovi</th>
+			<th scope="col">Azioni</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,13 +32,20 @@ if (currentUser.getPizze().size() > 0) {
  }
  %>
 			</td>
-			<td>
+			<td class="d-flex align-items-center justify-content-center gap-2">
 				<form action="RemovePizza" method="post">
 					<input type="hidden" name="userId"
 						value="<%=currentUser.getUser_id()%>"> <input
 						type="hidden" name="pizzaId"
 						value="<%=currentPizza.getId_pizza()%>">
 					<button type="submit" class="btn btn-danger">X</button>
+				</form>
+				<form action="ToUpdatePage" method="post">
+					<input type="hidden" name="userId"
+						value="<%=currentUser.getUser_id()%>"> <input
+						type="hidden" name="currentPizzaId"
+						value="<%=currentPizza.getId_pizza()%>">
+					<button type="submit" class="btn btn-primary">Update</button>
 				</form>
 			</td>
 		</tr>

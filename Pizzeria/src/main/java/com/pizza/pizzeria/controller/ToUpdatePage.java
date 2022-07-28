@@ -14,26 +14,26 @@ import com.pizza.pizzeria.dao.PizzaDao;
 import com.pizza.pizzeria.dao.UserDao;
 import com.pizza.pizzeria.model.Impasto;
 import com.pizza.pizzeria.model.Ingrediente;
+import com.pizza.pizzeria.model.Pizza;
 import com.pizza.pizzeria.model.User;
 
-@WebServlet("/MakePizza")
-public class MakePizza extends HttpServlet {
+@WebServlet("/ToUpdatePage")
+public class ToUpdatePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-		String name = request.getParameter("name");
-		String currentImpasto = request.getParameter("impasto");
-		String[] ingredienti = request.getParameterValues("ingrediente");
-		int idUtenteLoggato = Integer.parseInt(request.getParameter("utenteLoggatoId"));
-		PizzaDao.makePizza(name, currentImpasto, ingredienti, idUtenteLoggato);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("update-form.jsp");
+		int idUtenteLoggato = Integer.parseInt(request.getParameter("userId"));
+		int idCurrentPizza = Integer.parseInt(request.getParameter("currentPizzaId"));
 		User user = UserDao.findUserById(idUtenteLoggato);
+		Pizza pizza = PizzaDao.findPizzaById(idCurrentPizza);
 	    request.setAttribute("logged", user);
-	    List<Impasto> listaImpasti = PizzaDao.findAllImpasti();
+	    request.setAttribute("currentPizza", pizza);
+		List<Impasto> listaImpasti = PizzaDao.findAllImpasti();
 		List<Ingrediente> listaIngredienti = PizzaDao.findAllIngredienti();
 		request.setAttribute("listaImpasti", listaImpasti);
 		request.setAttribute("listaIngredienti", listaIngredienti);
-		rd.forward(request, response);
+		dispatcher.forward(request, response);
 	}
 
 }
